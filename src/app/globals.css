@@ -121,12 +121,12 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply w-screen min-h-screen flex flex-col bg-background text-foreground;
   }
 }
 
 @layer components {
   button {
-    @apply cursor-pointer
+    @apply cursor-pointer;
   }
 }
