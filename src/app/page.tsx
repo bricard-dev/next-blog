@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="h-screen w-screen flex flex-col justify-center items-center">
-      <h1>Hello World!</h1>
-      <Button>Click me</Button>
-    </main>
-  )
+    <div>
+      <h1>Home</h1>
+      <Link href="/about">About</Link>
+    </div>
+  );
 }

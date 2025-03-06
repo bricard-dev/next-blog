@@ -2,11 +2,16 @@
   "name": "next-blog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
@@ -27,8 +32,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cypress": "^14.1.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
+    "start-server-and-test": "^2.0.10",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "typescript": "^5"
