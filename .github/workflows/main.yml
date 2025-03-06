@@ -35,6 +35,7 @@ jobs:
     needs: test # This ensures deploy only runs if tests pass
     if: github.ref == 'refs/heads/main' # Only deploy on main branch
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
