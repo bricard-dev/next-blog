@@ -15,16 +15,19 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v3
 
-      - name: 🟢 Setup Node.js with pnpm
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
 
+      - name: 🟢 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: 📦 Install dependencies
-        run: |
-          corepack enable
-          pnpm install
+        run: pnpm install
 
       - name: 🧪 Run Jest tests
         run: pnpm test
@@ -32,7 +35,7 @@ jobs:
       - name: 🧪 Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          build: pnpm build # Cypress builds the app
-          start: pnpm start # Starts local server
+          build: pnpm build
+          start: pnpm start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
