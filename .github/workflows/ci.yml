@@ -7,9 +7,32 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    name: Test
+  test-and-build:
+    name: 🧪 Run Jest & Cypress
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - run: echo "✅ Hello, CI is running!"
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🟢 Setup Node.js with pnpm
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: 📦 Install dependencies
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: 🧪 Run Jest tests
+        run: pnpm test
+
+      - name: 🧪 Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: pnpm build # Cypress builds the app
+          start: pnpm start # Starts local server
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
